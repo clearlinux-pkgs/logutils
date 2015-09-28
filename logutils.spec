@@ -4,7 +4,7 @@
 #
 Name     : logutils
 Version  : 0.3.3
-Release  : 9
+Release  : 10
 URL      : https://pypi.python.org/packages/source/l/logutils/logutils-0.3.3.tar.gz
 Source0  : https://pypi.python.org/packages/source/l/logutils/logutils-0.3.3.tar.gz
 Summary  : Logging utilities
