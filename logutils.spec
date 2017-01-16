@@ -4,13 +4,15 @@
 #
 Name     : logutils
 Version  : 0.3.3
-Release  : 19
+Release  : 20
 URL      : https://pypi.python.org/packages/source/l/logutils/logutils-0.3.3.tar.gz
 Source0  : https://pypi.python.org/packages/source/l/logutils/logutils-0.3.3.tar.gz
 Summary  : Logging utilities
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: logutils-python
+BuildRequires : pbr
+BuildRequires : pip
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
@@ -33,13 +35,16 @@ python components for the logutils package.
 %setup -q -n logutils-0.3.3
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1484552678
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
+export SOURCE_DATE_EPOCH=1484552678
 rm -rf %{buildroot}
-python2 setup.py build -b py2 install --root=%{buildroot}
-python3 setup.py build -b py3 install --root=%{buildroot}
+python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 
 %files
 %defattr(-,root,root,-)
