@@ -1,5 +1,5 @@
 PKG_NAME := logutils
-URL := https://pypi.python.org/packages/source/l/logutils/logutils-0.3.3.tar.gz
+URL := http://pypi.debian.net/logutils/logutils-0.3.4.1.tar.gz
 
 
 include ../common/Makefile.common
