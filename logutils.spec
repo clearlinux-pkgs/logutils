@@ -4,7 +4,7 @@
 #
 Name     : logutils
 Version  : 0.3.5
-Release  : 26
+Release  : 27
 URL      : http://pypi.debian.net/logutils/logutils-0.3.5.tar.gz
 Source0  : http://pypi.debian.net/logutils/logutils-0.3.5.tar.gz
 Summary  : Logging utilities
