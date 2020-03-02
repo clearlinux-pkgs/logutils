@@ -4,32 +4,48 @@
 #
 Name     : logutils
 Version  : 0.3.5
-Release  : 42
+Release  : 43
 URL      : http://pypi.debian.net/logutils/logutils-0.3.5.tar.gz
 Source0  : http://pypi.debian.net/logutils/logutils-0.3.5.tar.gz
 Summary  : Logging utilities
 Group    : Development/Tools
 License  : BSD-3-Clause
-Requires: logutils-python3
-Requires: logutils-python
-BuildRequires : pbr
-BuildRequires : pip
-
-BuildRequires : python3-dev
-BuildRequires : setuptools
+Requires: logutils-license = %{version}-%{release}
+Requires: logutils-python = %{version}-%{release}
+Requires: logutils-python3 = %{version}-%{release}
+BuildRequires : buildreq-distutils3
 
 %description
+The logutils package provides a set of handlers for the Python standard
 library's logging package.
-        
-        Some of these handlers are out-of-scope for the standard library, and
-        so they are packaged here. Others are updated versions which have
-        appeared in recent Python releases, but are usable with older versions
-        of Python and so are packaged here.
+
+Some of these handlers are out-of-scope for the standard library, and
+so they are packaged here. Others are updated versions which have
+appeared in recent Python releases, but are usable with older versions
+of Python and so are packaged here.
+
+The source code repository is at:
+
+https://bitbucket.org/vinay.sajip/logutils/
+
+Documentation is available at:
+
+https://logutils.readthedocs.io/
+
+https://pythonhosted.org/logutils/
+
+%package license
+Summary: license components for the logutils package.
+Group: Default
+
+%description license
+license components for the logutils package.
+
 
 %package python
 Summary: python components for the logutils package.
 Group: Default
-Requires: logutils-python3
+Requires: logutils-python3 = %{version}-%{release}
 
 %description python
 python components for the logutils package.
@@ -39,6 +55,7 @@ python components for the logutils package.
 Summary: python3 components for the logutils package.
 Group: Default
 Requires: python3-core
+Provides: pypi(logutils)
 
 %description python3
 python3 components for the logutils package.
@@ -46,24 +63,39 @@ python3 components for the logutils package.
 
 %prep
 %setup -q -n logutils-0.3.5
+cd %{_builddir}/logutils-0.3.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1523049619
-python3 setup.py build -b py3
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1583172165
+# -Werror is for werrorists
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build
 
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/logutils
+cp %{_builddir}/logutils-0.3.5/LICENSE.txt %{buildroot}/usr/share/package-licenses/logutils/8dbf8a0c17021a01a2d36f6fe6e96af23321d9d3
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/logutils/8dbf8a0c17021a01a2d36f6fe6e96af23321d9d3
 
 %files python
 %defattr(-,root,root,-)
