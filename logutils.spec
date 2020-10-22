@@ -4,7 +4,7 @@
 #
 Name     : logutils
 Version  : 0.3.5
-Release  : 44
+Release  : 45
 URL      : http://pypi.debian.net/logutils/logutils-0.3.5.tar.gz
 Source0  : http://pypi.debian.net/logutils/logutils-0.3.5.tar.gz
 Summary  : Logging utilities
@@ -16,23 +16,12 @@ Requires: logutils-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 
 %description
-The logutils package provides a set of handlers for the Python standard
 library's logging package.
-
-Some of these handlers are out-of-scope for the standard library, and
-so they are packaged here. Others are updated versions which have
-appeared in recent Python releases, but are usable with older versions
-of Python and so are packaged here.
-
-The source code repository is at:
-
-https://bitbucket.org/vinay.sajip/logutils/
-
-Documentation is available at:
-
-https://logutils.readthedocs.io/
-
-https://pythonhosted.org/logutils/
+        
+        Some of these handlers are out-of-scope for the standard library, and
+        so they are packaged here. Others are updated versions which have
+        appeared in recent Python releases, but are usable with older versions
+        of Python and so are packaged here.
 
 %package license
 Summary: license components for the logutils package.
@@ -70,12 +59,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583172165
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1603395326
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
