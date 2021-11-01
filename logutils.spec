@@ -4,7 +4,7 @@
 #
 Name     : logutils
 Version  : 0.3.5
-Release  : 56
+Release  : 57
 URL      : http://pypi.debian.net/logutils/logutils-0.3.5.tar.gz
 Source0  : http://pypi.debian.net/logutils/logutils-0.3.5.tar.gz
 Summary  : Logging utilities
@@ -59,7 +59,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1603395326
+export SOURCE_DATE_EPOCH=1635751522
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
